@@ -4,7 +4,7 @@ author = Sebastián
 '''
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
-Fossil Butte is a ruggedly impressive
+Fossil Butte is a ruggedly , impressive
 topographic feature that rises sharply
 some 1000 feet above Twin Creek Valley
 to an elevation of more than 7500 feet
@@ -44,6 +44,7 @@ values = {"words": 0,
           }
 
 word_occurrence = {}
+clean_text = []
 
 # welcoming the user and asking for login information
 print("WELCOME TO TEXT ANALYZER!".center(len(separator)),
@@ -74,8 +75,11 @@ else:
     quit()
 
 # Separating and splitting chosen text in TEXTS
-clean_text = [(text.strip(",.:;"))
-              for text in TEXTS[int(chosen_text) - 1].split()]
+for text in TEXTS[int(chosen_text) - 1].split():
+    if text.strip(",.:;") == "":
+        continue
+    else:
+        clean_text.append(text.strip(",.:;"))
 
 # Checking values in clean_text and printing desired result
 for word in clean_text:
