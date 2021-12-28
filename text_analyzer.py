@@ -43,7 +43,7 @@ values = {"words": 0,
           "numsum": 0,
           }
 
-symbol_blacklist = ",.:;\"'@!#%&()[]{}*+-<>`"
+symbol_blacklist = ",.:;\"'@!\/#%&()[]{}*+-<>`"
 word_occurrence = {}
 
 
