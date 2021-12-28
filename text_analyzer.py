@@ -43,8 +43,9 @@ values = {"words": 0,
           "numsum": 0,
           }
 
+symbol_blacklist = ",.:;\"'@!#%&()[]{}*+-<>`"
 word_occurrence = {}
-clean_text = []
+
 
 # welcoming the user and asking for login information
 print("WELCOME TO TEXT ANALYZER!".center(len(separator)),
@@ -74,12 +75,12 @@ else:
     print("The chosen number is invalid!")
     quit()
 
-# Separating and splitting chosen text in TEXTS
-for text in TEXTS[int(chosen_text) - 1].split():
-    if text.strip(",.:;") == "":
-        continue
-    else:
-        clean_text.append(text.strip(",.:;"))
+# Splitting and cleaning chosen text in TEXTS
+clean_text = [
+    text.strip(symbol_blacklist)
+    for text in TEXTS[int(chosen_text) - 1].split()
+    if not text.strip(symbol_blacklist) == ""
+    ]
 
 # Checking values in clean_text and printing desired result
 for word in clean_text:
@@ -109,7 +110,7 @@ for word in clean_text:
     else:
         word_occurrence[len(word)] += 1
 
-# saving word, occurrence in word_occurrence into result for final print
+# saving word, count in word_occurrence into result for final print
 result = [(word, word_occurrence[word]) for word in word_occurrence]
 
 # printing result using a loop
